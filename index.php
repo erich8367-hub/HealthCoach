@@ -1,16 +1,11 @@
 <?php 
-  session_start(); 
-
-  if (!isset($_SESSION['username'])) {
-  	$_SESSION['msg'] = "You must log in first";
-  	header('location: login.php');
-  }
-  if (isset($_GET['logout'])) {
-  	session_destroy();
-  	unset($_SESSION['username']);
-  	header("location: login.php");
-  }
+	session_start();
+	setcookie(session_name(), '', 100);
+	session_unset();
+	session_destroy();
+	$_SESSION = array();
 ?>
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
@@ -31,6 +26,7 @@
 	<body>
 	<div class="limiter">
 		<div class="container">
+		<a href = "logout.php">Logout</a>
 			<div class="wrap-input100">
 				<input class="input100" type="text" name="search" placeholder="Search">
 				<span class="focus-input100"></span>
@@ -38,6 +34,53 @@
 					<i class="fa fa-search" aria-hidden="true"></i>
 				</span>
 			</div>
+			<div class="square">
+				<div class="content">
+					<div class="table">
+						<div class="table-cell">
+							... CONTENT HERE ...
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="square">
+				<div class="content">
+					<div class="table">
+						<div class="table-cell">
+							... CONTENT HERE ...
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="square">
+				<div class="content">
+					<div class="table">
+						<div class="table-cell">
+							... CONTENT HERE ...
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="square">
+				<div class="content">
+					<div class="table">
+						<div class="table-cell">
+							... CONTENT HERE ...
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="square">
+				<div class="content">
+					<div class="table">
+						<div class="table-cell">
+							... CONTENT HERE ...
+						</div>
+					</div>
+				</div>
+			</div>
+
+
 		</div>
 	</div>
 	</body>
