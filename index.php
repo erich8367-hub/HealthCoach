@@ -1,24 +1,45 @@
-<?php
-   session_start();
-   if (! isset($_SESSION['name'])) {
-      if (isset($_POST['username'])){
-         $username = $_POST['username'];
-         $pswd = $_POST['pswd'];
+<?php 
+  session_start(); 
 
-         $conn=pg_connect("host=localhost dbname=corporate user=root password=") or die(pg_last_error($conn));
-
-         $query = "SELECT name FROM users WHERE username='$username' AND pswd='$pswd'";
-         $result = pg_query($conn, $query);
-         if (pg_num_rows($result) == 1){
-            $_SESSION['name'] = pg_fetch_result($result,0,'name');
-            $_SESSION['username'] = pg_fetch_result($result,0,'username');
-            echo "You're logged in. Feel free to return at a later time.";
-         }
-      } else {
-         include "login.html";
-      }
-   } else {
-       $name = $_SESSION['name'];
-       echo "Welcome back, $name!";
-    }
+  if (!isset($_SESSION['username'])) {
+  	$_SESSION['msg'] = "You must log in first";
+  	header('location: login.php');
+  }
+  if (isset($_GET['logout'])) {
+  	session_destroy();
+  	unset($_SESSION['username']);
+  	header("location: login.php");
+  }
 ?>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Home</title>
+		<link rel="stylesheet" type="text/css" href="css/util.css">
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	</head>
+
+	<?php if (isset($_SESSION['success'])) : ?>
+		
+	<?php endif ?>
+
+	<?php  if (isset($_SESSION['username'])) : ?>
+	<body>
+	<div class="limiter">
+		<div class="container">
+			<div class="wrap-input100">
+				<input class="input100" type="text" name="search" placeholder="Search">
+				<span class="focus-input100"></span>
+				<span class="symbol-input100">							
+					<i class="fa fa-search" aria-hidden="true"></i>
+				</span>
+			</div>
+		</div>
+	</div>
+	</body>
+	<?php endif ?>
+</html>
