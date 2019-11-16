@@ -136,7 +136,7 @@ iframe {
   margin:1.66%;
   overflow:hidden;
   border-radius: 25px;
-  background: white;
+  background: linear-gradient(to top, #43cea2, #185a9d);
 }
 .content {
   position:absolute;
@@ -200,12 +200,12 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: linear-gradient(to right, #43cea2, #185a9d);
+  background: linear-gradient(to top, #43cea2, #185a9d);
 }
 
 .wrap {
   width: 960px;
-  background: white;
+  background: linear-gradient(to top, #43cea2, #185a9d);
   border-radius: 10px;
   overflow: hidden;
 

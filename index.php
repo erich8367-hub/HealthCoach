@@ -32,7 +32,6 @@
 	<body>
 	<div class="limiter">
 		<div class="container">
-		<a href = "logout.php">Logout</a>
 			<div class="wrap-input100">
 				<input class="input100" type="text" name="search" placeholder="Search">
 				<span class="focus-input100"></span>
