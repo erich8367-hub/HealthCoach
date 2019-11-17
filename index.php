@@ -1,16 +1,11 @@
-<?php 
-	session_start(); 
+<?php  include('config.php'); ?>
 
-	if (!isset($_SESSION['username'])) {
-		$_SESSION['msg'] = "You must log in first";
-		header('location: login.php');
-	}
-	if (isset($_GET['logout'])) {
-		session_destroy();
-		unset($_SESSION['username']);
-		header("location: login.php");
-  	}
-?>
+<?php require_once(ROOT_PATH . '/public_functions.php') ?>
+
+<?php $posts = getPublishedPosts(); ?>
+
+<?php require_once( ROOT_PATH . '/includes/registration_login.php') ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,15 +13,11 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Home</title>
-		<link rel="stylesheet" type="text/css" href="css/util.css">
-		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="static/css/util.css">
+		<link rel="stylesheet" type="text/css" href="static/css/public_styling.css">
 		<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 	</head>
-
-	<?php if (isset($_SESSION['success'])) : ?>
-  	<?php endif ?>
-
-    <?php  if (isset($_SESSION['username'])) : ?>
+	<?php  if (isset($_SESSION['username'])) : ?>
 		<body>
 			<div class="limiter">
 				<div class="container">
@@ -37,50 +28,26 @@
 							<i class="fa fa-search" aria-hidden="true"></i>
 						</span>
 					</div>
-					<div class="square">
-						<div class="content">
-							<div class="table">
-								<div class="table-cell">
+					<?php foreach ($posts as $post): ?>
+						<div class="square">
+							<div class="content">
+								<div class="table">
+									<div class="table-cell">
+										<img src="<?php echo BASE_URL . '/static/images/' . $post['image']; ?>" class="post_image" alt="">
+										<a href="single_post.php?post-slug=<?php echo $post['slug']; ?>">
+										<div class="post_info">
+											<h3><?php echo $post['title'] ?></h3>
+											<div class="info">
+												<span><?php echo date("F j, Y ", strtotime($post["created_at"])); ?></span>
+												<span class="read_more">Read more...</span>
+											</div>
+										</div>
+										</a>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="square">
-						<div class="content">
-							<div class="table">
-								<div class="table-cell">
-									... CONTENT HERE ...
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="square">
-						<div class="content">
-							<div class="table">
-								<div class="table-cell">
-									... CONTENT HERE ...
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="square">
-						<div class="content">
-							<div class="table">
-								<div class="table-cell">
-									... CONTENT HERE ...
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="square">
-						<div class="content">
-							<div class="table">
-								<div class="table-cell">
-									... CONTENT HERE ...
-								</div>
-							</div>
-						</div>
-					</div>
+					<?php endforeach ?>
 				</div>
 			</div>
 		</body>

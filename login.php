@@ -1,12 +1,14 @@
-<?php include('server.php') ?>
+<?php  include('config.php'); ?>
+
+<?php  include('includes/registration_login.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>Login</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="static/css/public_styling.css">
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
 </head>
@@ -24,7 +26,7 @@
 					</span>
 					<div class="text-center p-t-12">
 						<span class="txt3">
-							<?php include ('errors.php'); ?>
+							<?php include ('includes/errors.php'); ?>
 						</span>
 					</div>
 					
@@ -45,7 +47,7 @@
 					</div>
 					
 					<div class="container-form-btn">
-						<button class="form-btn" name="login_user">
+						<button class="form-btn" name="login_btn">
 							Login
 						</button>
 					</div>

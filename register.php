@@ -1,13 +1,14 @@
-<?php include('server.php') ?>
+<?php  include('config.php'); ?>
+
+<?php  include('includes/registration_login.php'); ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Register</title>
-  <link rel="stylesheet" type="text/css" href="css/main.css">
-  <link rel="stylesheet" type="text/css" href="css/util.css">
-  <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-
+  	<title>Register</title>
+  	<link rel="stylesheet" type="text/css" href="static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="static/css/public_styling.css">
+ 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -19,7 +20,7 @@
 				</div>
 
 				<form class="form validate-form" method="post" action="register.php">
-					<?php include ('errors.php'); ?>
+					<?php include ('includes/errors.php'); ?>
 					<span class="form-title">
 						Register
 					</span>

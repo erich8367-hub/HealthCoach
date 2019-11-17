@@ -1,5 +1,4 @@
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
+/* FONT */
 
 @font-face {
   font-family: Poppins-Regular;
@@ -21,8 +20,33 @@
   src: url('../fonts/montserrat/Montserrat-Bold.ttf'); 
 }
 
-/*//////////////////////////////////////////////////////////////////
-[ RESTYLE TAG ]*/
+/* NOTIFICATION MESSAGES */
+.message {
+	width: 100%; 
+	margin: 0px auto; 
+	padding: 10px 0px; 
+	color: #3c763d; 
+	background: #dff0d8; 
+	border: 1px solid #3c763d;
+	border-radius: 5px; 
+	text-align: center;
+}
+.error {
+	color: #a94442; 
+	background: #f2dede; 
+	border: 1px solid #a94442; 
+	margin-bottom: 20px;
+}
+.validation_errors p {
+	text-align: left;
+	margin-left: 10px;
+}
+.logged_in_info {
+	text-align: right; 
+	padding: 10px;
+}
+
+/* RESTYLE TAG */
 
 * {
 	margin: 0px; 
@@ -126,8 +150,7 @@ iframe {
 	border: none !important;
 }
 
-/*//////////////////////////////////////////////////////////////////
-[ Content ]*/
+/* CONTENT */
 .square {
   float:left;
   position: relative;
@@ -136,7 +159,7 @@ iframe {
   margin:1.66%;
   overflow:hidden;
   border-radius: 25px;
-  background: linear-gradient(to top, #43cea2, #185a9d);
+  background: white;
 }
 .content {
   position:absolute;
@@ -156,8 +179,7 @@ iframe {
   height:100%;
   width:100%;
 }
-/*//////////////////////////////////////////////////////////////////
-[ Utility ]*/
+/* UTILITY */
 .txt1 {
   font-family: Poppins-Regular;
   font-size: 13px;
@@ -180,8 +202,7 @@ iframe {
 }
 
 
-/*//////////////////////////////////////////////////////////////////
-[ login ]*/
+/* LOGIN */
 
 .limiter {
   width: 100%;
@@ -219,8 +240,7 @@ iframe {
   padding: 177px 130px 33px 95px;
 }
 
-/*------------------------------------------------------------------
-[  ]*/
+/* IMAGES */
 .pic {
   width: 316px;
 }
@@ -230,8 +250,7 @@ iframe {
 }
 
 
-/*------------------------------------------------------------------
-[  ]*/
+/* FORMS */
 .form {
   width: 290px;
 }
@@ -272,8 +291,7 @@ iframe {
 }
 
 
-/*------------------------------------------------------------------
-[ Focus ]*/
+/* FOCUS */
 .focus-input100 {
   display: block;
   position: absolute;
@@ -317,8 +335,7 @@ iframe {
   padding-left: 28px;
 }
 
-/*------------------------------------------------------------------
-[ Button ]*/
+/* BUTTON */
 .container-form-btn {
   width: 100%;
   display: -webkit-box;
@@ -361,12 +378,7 @@ iframe {
   background: #333333;
 }
 
-
-
-/*------------------------------------------------------------------
-[ Responsive ]*/
-
-
+/* RESPONSIVE */
 
 @media (max-width: 992px) {
   .wrap {
@@ -403,8 +415,7 @@ iframe {
 }
 
 
-/*------------------------------------------------------------------
-[ Alert validate ]*/
+/* ALERT VALIDATE */
 
 .validate-input {
   position: relative;
