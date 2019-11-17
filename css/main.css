@@ -205,7 +205,7 @@ iframe {
 
 .wrap {
   width: 960px;
-  background: linear-gradient(to top, #43cea2, #185a9d);
+  background: white;
   border-radius: 10px;
   overflow: hidden;
 
