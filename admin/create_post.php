@@ -2,10 +2,9 @@
 <?php  include(ROOT_PATH . '/admin/includes/admin_functions.php'); ?>
 <?php  include(ROOT_PATH . '/admin/includes/post_functions.php'); ?>
 <?php include(ROOT_PATH . '/admin/includes/head_section.php'); ?>
-<!-- Get all topics -->
-<?php $topics = getAllTopics();	?>
-	<title>Admin | Create Post</title>
-</head>
+
+<title>Admin | Create Post</title>
+
 <body>
 	<!-- admin navbar -->
 	<?php include(ROOT_PATH . '/admin/includes/navbar.php') ?>
@@ -30,14 +29,6 @@
 				<label style="float: left; margin: 5px auto 5px;">Featured image</label>
 				<input type="file" name="featured_image" >
 				<textarea name="body" id="body" cols="30" rows="10"><?php echo $body; ?></textarea>
-				<select name="topic_id">
-					<option value="" selected disabled>Choose topic</option>
-					<?php foreach ($topics as $topic): ?>
-						<option value="<?php echo $topic['id']; ?>">
-							<?php echo $topic['name']; ?>
-						</option>
-					<?php endforeach ?>
-				</select>
 				
 				<!-- Only admin users can view publish input field -->
 				<?php if ($_SESSION['user']['role'] == "Admin"): ?>

@@ -1,5 +1,5 @@
 <?php  include('config.php'); ?>
-<?php  include('public_functions.php'); ?>
+<?php  include('includes/public_functions.php'); ?>
 <?php 
 	if (isset($_GET['post-slug'])) {
 		$post = getPost($_GET['post-slug']);

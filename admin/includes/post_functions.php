@@ -48,6 +48,8 @@ function getPostAuthorById($user_id)
 		return null;
 	}
 }
+
+
 /* - - - - - - - - - - 
 -  Post actions
 - - - - - - - - - - -*/
@@ -193,30 +195,30 @@ function createPost($request_values)
 			header("location: posts.php");
 			exit(0);
 		}
-    }
-    
-    // if user clicks the publish post button
-if (isset($_GET['publish']) || isset($_GET['unpublish'])) {
-	$message = "";
-	if (isset($_GET['publish'])) {
-		$message = "Post published successfully";
-		$post_id = $_GET['publish'];
-	} else if (isset($_GET['unpublish'])) {
-		$message = "Post successfully unpublished";
-		$post_id = $_GET['unpublish'];
 	}
-	togglePublishPost($post_id, $message);
-}
-// delete blog post
-function togglePublishPost($post_id, $message)
-{
-	global $conn;
-	$sql = "UPDATE posts SET published=!published WHERE id=$post_id";
-	
-	if (mysqli_query($conn, $sql)) {
-		$_SESSION['message'] = $message;
-		header("location: posts.php");
-		exit(0);
+
+	// if user clicks the publish post button
+	if (isset($_GET['publish']) || isset($_GET['unpublish'])) {
+		$message = "";
+		if (isset($_GET['publish'])) {
+			$message = "Post published successfully";
+			$post_id = $_GET['publish'];
+		} else if (isset($_GET['unpublish'])) {
+			$message = "Post successfully unpublished";
+			$post_id = $_GET['unpublish'];
+		}
+		togglePublishPost($post_id, $message);
 	}
-}
+	// delete blog post
+	function togglePublishPost($post_id, $message)
+	{
+		global $conn;
+		$sql = "UPDATE posts SET published=!published WHERE id=$post_id";
+		
+		if (mysqli_query($conn, $sql)) {
+			$_SESSION['message'] = $message;
+			header("location: posts.php");
+			exit(0);
+		}
+	}
 ?>
