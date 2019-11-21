@@ -17,12 +17,12 @@
 		<div class="container">
 			<div class="wrap">
 				<div class="pic js-tilt" data-tilt>
-					<img src="images/logo.jpg" alt="IMG">
+					<img src="static/images/logo.jpg" alt="IMG">
 				</div>
 
 				<form class="form" method="post" action="login.php">
 					<span class="form-title">
-						Member Login
+						Login
 					</span>
 					<div class="text-center p-t-12">
 						<span class="txt3">
@@ -87,7 +87,7 @@
 		})
 	</script>
 
-	<script src="js/main.js"></script>
+	<script src="static/js/main.js"></script>
 
 </body>
 </html>

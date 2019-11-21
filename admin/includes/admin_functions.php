@@ -5,6 +5,7 @@ $isEditingUser = false;
 $username = "";
 $role = "";
 $email = "";
+
 // general variables
 $errors = [];
 
@@ -29,37 +30,6 @@ if (isset($_POST['update_admin'])) {
 if (isset($_GET['delete-admin'])) {
 	$admin_id = $_GET['delete-admin'];
 	deleteAdmin($admin_id);
-}
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-* - Returns all admin users and their corresponding roles
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-function getAdminUsers(){
-	global $conn, $roles;
-	$sql = "SELECT * FROM users WHERE role IS NOT NULL";
-	$result = mysqli_query($conn, $sql);
-	$users = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-	return $users;
-}
-/* * * * * * * * * * * * * * * * * * * * *
-* - Escapes form submitted value, hence, preventing SQL injection
-* * * * * * * * * * * * * * * * * * * * * */
-function esc(String $value){
-	// bring the global db connect object into function
-	global $conn;
-	// remove empty space sorrounding string
-	$val = trim($value); 
-	$val = mysqli_real_escape_string($conn, $value);
-	return $val;
-}
-// Receives a string like 'Some Sample String'
-// and returns 'some-sample-string'
-function makeSlug(String $string){
-	$string = strtolower($string);
-	$slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $string);
-	return $slug;
 }
 /* - - - - - - - - - - - -
 -  Admin users functions
@@ -107,12 +77,11 @@ function createAdmin($request_values){
 				  VALUES('$username', '$email', '$role', '$password', now(), now())";
 		mysqli_query($conn, $query);
 
-		$_SESSION['message'] = "Admin user created successfully";
+		$_SESSION['message'] = "User created successfully";
 		header('location: users.php');
 		exit(0);
 	}
 }
-
 /* * * * * * * * * * * * * * * * * * * * *
 * - Takes admin id as parameter
 * - Fetches the admin from database
@@ -157,7 +126,7 @@ function updateAdmin($request_values){
 		$query = "UPDATE users SET username='$username', email='$email', role='$role', password='$password' WHERE id=$admin_id";
 		mysqli_query($conn, $query);
 
-		$_SESSION['message'] = "Admin user updated successfully";
+		$_SESSION['message'] = "User updated successfully";
 		header('location: users.php');
 		exit(0);
 	}
@@ -171,5 +140,35 @@ function deleteAdmin($admin_id) {
 		header("location: users.php");
 		exit(0);
 	}
+}
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+* - Returns all admin users and their corresponding roles
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+function getAdminUsers(){
+	global $conn, $roles;
+	$sql = "SELECT * FROM users";
+	$result = mysqli_query($conn, $sql);
+	$users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+
+	return $users;
+}
+/* * * * * * * * * * * * * * * * * * * * *
+* - Escapes form submitted value, hence, preventing SQL injection
+* * * * * * * * * * * * * * * * * * * * * */
+function esc(String $value){
+	// bring the global db connect object into function
+	global $conn;
+	// remove empty space sorrounding string
+	$val = trim($value); 
+	$val = mysqli_real_escape_string($conn, $value);
+	return $val;
+}
+// Receives a string like 'Some Sample String'
+// and returns 'some-sample-string'
+function makeSlug(String $string){
+	$string = strtolower($string);
+	$slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $string);
+	return $slug;
 }
 ?>

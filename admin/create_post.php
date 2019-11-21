@@ -6,11 +6,11 @@
 <title>Admin | Create Post</title>
 
 <body>
-	<!-- admin navbar -->
+
 	<?php include(ROOT_PATH . '/admin/includes/navbar.php') ?>
 
 	<div class="container content">
-		<!-- Left side menu -->
+
 		<?php include(ROOT_PATH . '/admin/includes/menu.php') ?>
 
 		<!-- Middle form - to create and edit  -->
@@ -26,7 +26,6 @@
 				<?php endif ?>
 
 				<input type="text" name="title" value="<?php echo $title; ?>" placeholder="Title">
-				<label style="float: left; margin: 5px auto 5px;">Featured image</label>
 				<input type="file" name="featured_image" >
 				<textarea name="body" id="body" cols="30" rows="10"><?php echo $body; ?></textarea>
 				
@@ -55,7 +54,6 @@
 
 			</form>
 		</div>
-		<!-- // Middle form - to create and edit -->
 	</div>
 </body>
 </html>

@@ -3,6 +3,7 @@
 <?php  include(ROOT_PATH . '/admin/includes/post_functions.php'); ?>
 <?php include(ROOT_PATH . '/admin/includes/head_section.php'); ?>
 
+<!-- Get all admin posts from DB -->
 <?php $posts = getAllPosts(); ?>
 	<title>Admin | Manage Posts</title>
 </head>

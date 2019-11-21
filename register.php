@@ -16,7 +16,7 @@
 		<div class="container">
 			<div class="wrap">
 				<div class="pic js-tilt" data-tilt>
-					<img src="images/logo.jpg" alt="IMG">
+					<img src="static/images/logo.jpg" alt="IMG">
 				</div>
 
 				<form class="form validate-form" method="post" action="register.php">

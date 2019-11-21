@@ -7,7 +7,6 @@ $title = "";
 $post_slug = "";
 $body = "";
 $featured_image = "";
-$post_topic = "";
 
 /* - - - - - - - - - - 
 -  Post functions
@@ -76,12 +75,9 @@ if (isset($_GET['delete-post'])) {
 - - - - - - - - - - -*/
 function createPost($request_values)
 	{
-		global $conn, $errors, $title, $featured_image, $topic_id, $body, $published;
+		global $conn, $errors, $title, $featured_image, $body, $published;
 		$title = esc($request_values['title']);
 		$body = htmlentities(esc($request_values['body']));
-		if (isset($request_values['topic_id'])) {
-			$topic_id = esc($request_values['topic_id']);
-		}
 		if (isset($request_values['publish'])) {
 			$published = esc($request_values['publish']);
 		}
@@ -90,7 +86,6 @@ function createPost($request_values)
 		// validate form
 		if (empty($title)) { array_push($errors, "Post title is required"); }
 		if (empty($body)) { array_push($errors, "Post body is required"); }
-		if (empty($topic_id)) { array_push($errors, "Post topic is required"); }
 		// Get image name
 	  	$featured_image = $_FILES['featured_image']['name'];
 	  	if (empty($featured_image)) { array_push($errors, "Featured image is required"); }
@@ -111,8 +106,6 @@ function createPost($request_values)
 			$query = "INSERT INTO posts (user_id, title, slug, image, body, published, created_at, updated_at) VALUES(1, '$title', '$post_slug', '$featured_image', '$body', $published, now(), now())";
 			if(mysqli_query($conn, $query)){ // if post created successfully
 				$inserted_post_id = mysqli_insert_id($conn);
-				// create relationship between post and topic
-				$sql = "INSERT INTO post_topic (post_id, topic_id) VALUES($inserted_post_id, $topic_id)";
 				mysqli_query($conn, $sql);
 
 				$_SESSION['message'] = "Post created successfully";
@@ -141,15 +134,12 @@ function createPost($request_values)
 
 	function updatePost($request_values)
 	{
-		global $conn, $errors, $post_id, $title, $featured_image, $topic_id, $body, $published;
+		global $conn, $errors, $post_id, $title, $featured_image, $body, $published;
 
 		$title = esc($request_values['title']);
 		$body = esc($request_values['body']);
 		$post_id = esc($request_values['post_id']);
-		if (isset($request_values['topic_id'])) {
-			$topic_id = esc($request_values['topic_id']);
-		}
-		// create slug: if title is "The Storm Is Over", return "the-storm-is-over" as slug
+
 		$post_slug = makeSlug($title);
 
 		if (empty($title)) { array_push($errors, "Post title is required"); }
@@ -165,26 +155,20 @@ function createPost($request_values)
 		  	}
 		}
 
-		// register topic if there are no errors in the form
 		if (count($errors) == 0) {
 			$query = "UPDATE posts SET title='$title', slug='$post_slug', views=0, image='$featured_image', body='$body', published=$published, updated_at=now() WHERE id=$post_id";
-			// attach topic to post on post_topic table
 			if(mysqli_query($conn, $query)){ // if post created successfully
-				if (isset($topic_id)) {
-					$inserted_post_id = mysqli_insert_id($conn);
-					// create relationship between post and topic
-					$sql = "INSERT INTO post_topic (post_id, topic_id) VALUES($inserted_post_id, $topic_id)";
-					mysqli_query($conn, $sql);
-					$_SESSION['message'] = "Post created successfully";
-					header('location: posts.php');
-					exit(0);
+				mysqli_query($conn, $sql);
+				$_SESSION['message'] = "Post created successfully";
+				header('location: posts.php');
+				exit(0);
 				}
 			}
 			$_SESSION['message'] = "Post updated successfully";
 			header('location: posts.php');
 			exit(0);
 		}
-	}
+		
 	// delete blog post
 	function deletePost($post_id)
 	{

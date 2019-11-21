@@ -1,6 +1,4 @@
-<?php  include('config.php'); ?>
-
-<?php require_once('config.php') ?>
+<?php include('config.php') ?>
 <?php require_once( ROOT_PATH . '/includes/public_functions.php') ?>
 <?php require_once( ROOT_PATH . '/includes/registration_login.php') ?>
 
@@ -18,34 +16,26 @@
 	</head>
 	<body>
 		<div class="limiter">
-			<div class="container">
-				<div class="wrap-input100">
-					<input class="input100" type="text" name="search" placeholder="Search">
-					<span class="focus-input100"></span>
-					<span class="symbol-input100">							
-						<i class="fa fa-search" aria-hidden="true"></i>
-					</span>
-				</div>
-				<?php foreach ($posts as $post): ?>
-					<div class="square">
-						<div class="content">
-							<div class="table">
-								<div class="table-cell">
-									<img src="<?php echo BASE_URL . '/static/images/' . $post['image']; ?>" class="post_image" alt="">
-									<a href="single_post.php?post-slug=<?php echo $post['slug']; ?>">
-									<div class="post_info">
-										<h3><?php echo $post['title'] ?></h3>
-										<div class="info">
-											<span><?php echo date("F j, Y ", strtotime($post["created_at"])); ?></span>
-											<span class="read_more">Read more...</span>
+			<div class="background">
+			<?php include('includes/navbar.php')?>
+			    <div class="container">
+					<?php foreach ($posts as $post): ?>
+						<div class="square">
+							<div class="content">
+								<div class="table">
+									<div class="table-cell">
+										<img src="<?php echo BASE_URL . '/static/images/' . $post['image']; ?>" class="post_image" alt="">
+										<a href="single_post.php?post-slug=<?php echo $post['slug']; ?>">
+										<div class="post_info">
+											<h3><?php echo $post['title'] ?></h3>
 										</div>
+										</a>
 									</div>
-									</a>
 								</div>
 							</div>
 						</div>
-					</div>
-				<?php endforeach ?>
+					<?php endforeach ?>
+				</div>
 			</div>
 		</div>
 	</body>
