@@ -36,7 +36,7 @@
 		}
 		// register user if there are no errors in the form
 		if (count($errors) == 0) {
-			$password = sha1($password_1);//encrypt the password before saving in the database
+			$password = md5($password_1);//encrypt the password before saving in the database
 			$query = "INSERT INTO users (username, email, password, created_at, updated_at) 
 					  VALUES('$username', '$email', '$password', now(), now())";
 			mysqli_query($conn, $query);
@@ -53,7 +53,7 @@
 				// redirect to admin area
 				header('location: ' . BASE_URL . 'admin/dashboard.php');
 				exit(0);
-			} else if (!in_array($_SESSION['user']['role'], ["Admin", "Author"])) {
+			} else {
 				$_SESSION['message'] = "You are now logged in";
 				// redirect to public area
 				header('location: index.php');				
@@ -70,7 +70,7 @@
 		if (empty($username)) { array_push($errors, "Username required"); }
 		if (empty($password)) { array_push($errors, "Password required"); }
 		if (empty($errors)) {
-			$password = sha1($password); // encrypt password
+			$password = md5($password); // encrypt password
 			$sql = "SELECT * FROM users WHERE username='$username' and password='$password' LIMIT 1";
 
 			$result = mysqli_query($conn, $sql);
@@ -118,6 +118,8 @@
 		$result = mysqli_query($conn, $sql);
 		$user = mysqli_fetch_assoc($result);
 
+		// returns user in an array format: 
+		// ['id'=>1 'username' => 'Awa', 'email'=>'a@a.com', 'password'=> 'mypass']
 		return $user; 
 	}
 ?>

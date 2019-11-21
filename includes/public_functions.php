@@ -16,7 +16,6 @@ function getPublishedPosts() {
 	}
 	return $final_posts;
 }
-
 /* * * * * * * * * * * * * * *
 * Returns a single post
 * * * * * * * * * * * * * * */
@@ -27,9 +26,12 @@ function getPost($slug){
 	$sql = "SELECT * FROM posts WHERE slug='$post_slug' AND published=true";
 	$result = mysqli_query($conn, $sql);
 
+	// fetch query results as associative array.
 	$post = mysqli_fetch_assoc($result);
-
 	return $post;
 }
+
+
+
 
 ?>

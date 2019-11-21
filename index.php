@@ -1,42 +1,34 @@
-<?php include('config.php') ?>
+<!-- The first include should be config.php -->
+<?php require_once('config.php') ?>
 <?php require_once( ROOT_PATH . '/includes/public_functions.php') ?>
 <?php require_once( ROOT_PATH . '/includes/registration_login.php') ?>
 
+<!-- Retrieve all posts from database  -->
 <?php $posts = getPublishedPosts(); ?>
 
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Home</title>
-		<link rel="stylesheet" type="text/css" href="static/css/util.css">
-		<link rel="stylesheet" type="text/css" href="static/css/public_styling.css">
-		<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	</head>
-	<body>
-		<div class="limiter">
-			<div class="background">
-			<?php include('includes/navbar.php')?>
-			    <div class="container">
-					<?php foreach ($posts as $post): ?>
-						<div class="square">
-							<div class="content">
-								<div class="table">
-									<div class="table-cell">
-										<img src="<?php echo BASE_URL . '/static/images/' . $post['image']; ?>" class="post_image" alt="">
-										<a href="single_post.php?post-slug=<?php echo $post['slug']; ?>">
-										<div class="post_info">
-											<h3><?php echo $post['title'] ?></h3>
-										</div>
-										</a>
-									</div>
-								</div>
+<?php require_once( ROOT_PATH . '/includes/head_section.php') ?>
+	<title>LifeBlog | Home </title>
+</head>
+<body>
+	<div class="container">
+		<?php include( ROOT_PATH . '/includes/navbar.php') ?>
+		<div class="content">
+			<h2 class="content-title">Recipes</h2>
+			<hr>
+			<?php foreach ($posts as $post): ?>
+				<div class="post" style="margin-left: 0px;">
+					<img src="<?php echo BASE_URL . '/static/images/' . $post['image']; ?>" class="post_image" alt="">
+					<a href="single_post.php?post-slug=<?php echo $post['slug']; ?>">
+						<div class="post_info">
+							<h3><?php echo $post['title'] ?></h3>
+							<div class="info">
+								<span><?php echo date("F j, Y ", strtotime($post["created_at"])); ?></span>
+								<span class="read_more">Read more...</span>
 							</div>
 						</div>
-					<?php endforeach ?>
+					</a>
 				</div>
-			</div>
+			<?php endforeach ?>
 		</div>
-	</body>
-</html>
+
+		<?php include( ROOT_PATH . '/includes/footer.php') ?>
