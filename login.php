@@ -10,16 +10,11 @@
 	<link rel="stylesheet" type="text/css" href="static/css/util.css">
 	<link rel="stylesheet" type="text/css" href="static/css/public_styling.css">
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-
 </head>
 <body>
 	<div class="limiter">
 		<div class="container">
 			<div class="wrap">
-				<div class="pic js-tilt" data-tilt>
-					<img src="static/images/logo.jpg" alt="IMG">
-				</div>
-
 				<form class="form" method="post" action="login.php">
 					<span class="form-title">
 						Login
