@@ -1,34 +1,49 @@
-<!-- The first include should be config.php -->
 <?php require_once('config.php') ?>
 <?php require_once( ROOT_PATH . '/includes/public_functions.php') ?>
 <?php require_once( ROOT_PATH . '/includes/registration_login.php') ?>
 
-<!-- Retrieve all posts from database  -->
 <?php $posts = getPublishedPosts(); ?>
 
-<?php require_once( ROOT_PATH . '/includes/head_section.php') ?>
-	<title>LifeBlog | Home </title>
-</head>
-<body>
-	<div class="container">
-		<?php include( ROOT_PATH . '/includes/navbar.php') ?>
-		<div class="content">
-			<h2 class="content-title">Recipes</h2>
-			<hr>
-			<?php foreach ($posts as $post): ?>
-				<div class="post" style="margin-left: 0px;">
-					<img src="<?php echo BASE_URL . '/static/images/' . $post['image']; ?>" class="post_image" alt="">
-					<a href="single_post.php?post-slug=<?php echo $post['slug']; ?>">
-						<div class="post_info">
-							<h3><?php echo $post['title'] ?></h3>
-							<div class="info">
-								<span><?php echo date("F j, Y ", strtotime($post["created_at"])); ?></span>
-								<span class="read_more">Read more...</span>
-							</div>
-						</div>
-					</a>
-				</div>
-			<?php endforeach ?>
-		</div>
+	<head>
+		<title>Home</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
 
-		<?php include( ROOT_PATH . '/includes/footer.php') ?>
+		<script src="static/js/jquery.min.js"></script>
+		<script src="static/js/jquery.dropotron.min.js"></script>
+		<script src="static/js/skel.min.js"></script>
+		<script src="static/js/skel-layers.min.js"></script>
+		<script src="static/js/init.js"></script>
+
+		<link rel="stylesheet" href="static/css/skel.css" />
+		<link rel="stylesheet" href="static/css/public_styling.css" />
+
+	</head>
+	<body>
+			<div class="wrapper style">
+
+			<?php include('includes/header.php') ?>
+			
+				<div id="banner" class="container">
+					<section>
+						<p>This is <strong>HealthCoach</strong>, our aim is to assist people in living healthier lives by providing recipes as alternative to fast food.</p>
+					</section>
+				</div>
+				<div id="extra">
+					<div class="container">
+						<div class="row no-collapse-1">
+							<?php foreach ($posts as $post): ?>
+							<section class="4u"> <a href="#" class="image featured"><img src="<?php echo BASE_URL . '/static/images/' . $post['image']; ?>" alt="">
+							</a>
+								<div class="box">
+									<p><?php echo $post['title'] ?></p>
+									<a href="single_post.php?post-slug=<?php echo $post['slug']; ?>" class="button">Read More</a> </div>
+							</section>
+							<?php endforeach ?>
+						</div>
+					</div>
+				</div>
+			</div>
+	</body>
+</html>
